@@ -290,7 +290,7 @@ legend{font-size:13.5px;font-weight:500;margin-bottom:8px}
       <div class="section-head">
         <p class="eyebrow">Where we list</p>
         <h2>Marketplaces we work with every week</h2>
-        <p class="lede">Many of these run on Mirakl, so we know its templates, validation rules and error reports well.</p>
+        <p class="lede">Many of these run on Mirakl, so we know its templates, validation rules and error reports well. Don't see the marketplace you need? <a href="#contact">Ask us</a>, we add new ones regularly.</p>
       </div>
       <div class="mkts" id="mkts"></div>
     </div>
@@ -321,11 +321,11 @@ legend{font-size:13.5px;font-weight:500;margin-bottom:8px}
       </div>
       <div class="faq">
         <details open><summary>What does Andronikos Data actually do?</summary><p>We prepare and maintain your product listings on European marketplaces. That means filling import templates, mapping categories, writing titles in each language, and keeping prices and stock up to date.</p></details>
-        <details><summary>Which marketplaces do you support?</summary><p>Kaufland, Allegro, Galeria, limango, Worten, Vivre, Otto, Bol, Fnac, Zalando and others, including most Mirakl-based marketplaces. If yours is not on the list, ask us.</p></details>
+        <details><summary>Which marketplaces do you support?</summary><p>Major European and global marketplaces, including Kaufland, Otto, Amazon, Bol, Allegro, Worten, La Redoute, Galeries Lafayette, Fnac, Wayfair and many more. The full list is in the Marketplaces section above. If yours is not on it, ask us.</p></details>
         <details><summary>Do I need a feed tool or integrator?</summary><p>No. We can work straight from your Excel or CSV export. If you already use a feed tool, we fit into it and take over the catalog side.</p></details>
-        <details><summary>How fast can a new marketplace go live?</summary><p>For a catalog of a few hundred products, the first import is usually ready within one to two weeks of receiving your data, depending on the marketplace's review time.</p></details>
-        <details><summary>How is pricing set up?</summary><p>A monthly fee based on the number of marketplaces and products, plus a one-time setup fee per new marketplace. We send a quote after a short call.</p></details>
-        <details><summary>Where are you based?</summary><p>We are based in North Macedonia and work with brands and distributors across Europe, in English.</p></details>
+        <details><summary>How long does it take to get started?</summary><p>There is no long implementation project. We start from the files you already have, and what is already running keeps running while we set up each new marketplace. The exact timing depends on your catalog and on each marketplace's review process.</p></details>
+        <details><summary>How is pricing set up?</summary><p>Pricing depends on the number of product categories, SKUs and marketplaces. Tell us about your catalog and we will send you a quote.</p></details>
+        <details><summary>Where are you based?</summary><p>We are a specialised marketplace team based in Skopje, North Macedonia, working with brands and distributors across Europe and beyond.</p></details>
       </div>
     </div>
   </section>
@@ -336,12 +336,12 @@ legend{font-size:13.5px;font-weight:500;margin-bottom:8px}
         <div class="section-head" style="margin:0">
           <p class="eyebrow">Get started</p>
           <h2>Tell us about your catalog</h2>
-          <p class="lede">Say which marketplaces you sell on, or want to sell on, and roughly how many products you have. We usually reply within one business day.</p>
+          <p class="lede">Say which marketplaces you sell on, or want to sell on, and roughly how many products you have. We usually reply within 1–2 business days.</p>
         </div>
         <div class="info-row"><span>Email</span>
           <div class="copy"><a href="mailto:contact@andronikos-data.com"><code id="mail">contact@andronikos-data.com</code></a><button type="button" id="copyBtn">Copy</button></div>
         </div>
-        <div class="info-row"><span>Company</span><p>Andronikos Data DOOEL<br>North Macedonia</p></div>
+        <div class="info-row"><span>Company</span><p>Andronikos Data DOOEL<br>Skopje, North Macedonia</p></div>
       </div>
 
       <form id="form" novalidate>
@@ -419,8 +419,11 @@ function stopAuto(){ if(auto){clearInterval(auto); auto=null;} }
 
 const markets = [
   ["Kaufland","DE"],["Allegro","PL"],["Galeria","DE"],["limango","DE"],["Worten","PT"],["Vivre","RO"],
-  ["Otto","DE"],["Bol","NL"],["Fnac","FR"],["Zalando","EU"],["Amazon","EU"],["eMAG","RO"],
-  ["La Redoute","FR"],["Douglas","DE"],["Conrad","DE"],["Leroy Merlin","FR"],["Cdiscount","FR"],["+ more","on request"]
+  ["Otto","DE"],["Bol","NL"],["Amazon","EU"],["Zalando","EU"],["Fnac","FR"],["La Redoute","FR"],
+  ["Galeries Lafayette","FR"],["Åhlens","SE"],["Veepee","FR"],["Showroom Privé","FR"],["Maisons du Monde","FR"],["H&amp;M","EU"],
+  ["Leclerc","FR"],["vtwonen","NL"],["Inno","BE"],["ManoMano","EU"],["Cdiscount","FR"],["Faire","Wholesale"],
+  ["Manor","CH"],["Cultura","FR"],["Printemps","FR"],["Galaxus","CH"],["Kleertjes.com","NL"],["John Lewis &amp; Partners","UK"],
+  ["Kärkkäinen","FI"],["Macy's","US"],["Wayfair","US/EU"],["+ many more","on request"]
 ];
 document.getElementById("mkts").innerHTML = markets.map(([n,c])=>`<div class="mkt"><strong>${n}</strong><span>${c}</span></div>`).join("");
 const tick = markets.slice(0,-1).map(([n])=>`<span>${n}</span>`).join("");
@@ -447,7 +450,7 @@ document.getElementById("form").addEventListener("submit", async e=>{
     const r=await fetch(FORM_ENDPOINT,{method:"POST",body:new FormData(form),headers:{Accept:"application/json"}});
     const j=await r.json().catch(()=>({}));
     if(!r.ok || String(j.success)!=="true") throw new Error();
-    form.reset(); n.style.color="var(--ok)"; n.textContent="Thanks, we got your message and will reply within one business day.";
+    form.reset(); n.style.color="var(--ok)"; n.textContent="Thanks, we got your message and will reply within 1–2 business days.";
   }catch(_){ n.style.color="var(--warn)"; n.textContent="That didn't go through. Please email contact@andronikos-data.com."; }
   btn.disabled=false;
 });
